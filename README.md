@@ -28,3 +28,12 @@
 * Uses more memeory than singly linked list 
 * Must deal with two pointers for each node 
 
+## Circularly Linked list
+* Instead of last node pointing to NULL it points to the head 
+### Advantages 
+* Some data is circular so this will seem more natural 
+* Easier to traverse from middle of list since the tail will point back to the head
+* Fewer special cases
+### Disadvantages 
+* Could be difficult to add to head of list 
+* Loop control can be more difficult

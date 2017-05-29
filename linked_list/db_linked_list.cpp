@@ -1,39 +1,28 @@
-#include <iostream>
-
-template<typename T>
-class DbNode
+#include "dbll.hpp"
+int main()
 {
-
-public:
-	T data;
-	DbNode* prev; 
-	DbNode* next;
-
-	DbNode(const T& data, DbNode* prev, DbNode* next) : 
-	data(data), 
-	prev(prev), 
-	next(next){}
-
-};
-
-template<typename T> 
-class DbLinkedList
-{
-	DbNode<T>* head; 
-	DbNode<T>* tail; 
-
-	DbLinkedList() : head(nullptr), tail(nullptr) {}
-	~DbLinkedList();
-	void InsertAtHead(const T& val);
-};
-
+	DbLinkedList<int> list = DbLinkedList<int>();
+	list.InsertAtHead(1);
+	list.InsertAtHead(2);
+	list.InsertAtHead(3);
+	return 0;
+}
 template<typename T> 
 DbLinkedList<T>::~DbLinkedList()
 {
-	for(auto i = head; i->next != nullptr; i = i->next)
-	{
-		delete i;
-	}
+		auto tmp = head->next;
+		auto prev = head;
+
+		while(tmp != nullptr)
+		{
+			delete prev; 
+			prev = tmp; 
+			tmp = tmp->next;
+		}
+		delete prev;
+
+
+
 };
 
 template<typename T> 
@@ -43,16 +32,38 @@ void DbLinkedList<T>::InsertAtHead(const T& val)
 	{
 		auto tmp = new DbNode<T>(val,nullptr, nullptr) ;
 		head = tail = tmp; 
+		return ;
 	}
 	else
 	{
 		auto tmp = new DbNode<T>(val, nullptr, head);
 		head->prev = tmp ;
 		head = tmp; 
+		return; 
 	}
 
 }
-int main()
-{
 
+template<typename T>
+void DbLinkedList<T>::DeleteHead()
+{
+	if(head == nullptr)
+	{
+		std::cout<<"empty list" << std::endl;
+		return;
+	}
+	else if(head->next == nullptr)
+	{
+		delete head; 
+		head = tail =  nullptr;
+		return;
+	}
+	else
+	{
+		auto tmp = head->next; 
+		tmp->prev = nullptr; 
+		delete head; 
+		head = tmp; 
+		return; 
+	}
 }
