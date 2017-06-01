@@ -10,7 +10,6 @@ Queue<T>::~Queue()
 	{
 		head = tmp->next;  
 		delete tmp;
-		std::cout<<"del" <<std::endl;
 		tmp = head;  
 	}
 }
@@ -40,10 +39,18 @@ T Queue<T>::dequeue()
 	{
 		throw("queue is empty");
 	}
+
+	if(head == tail)
+	{
+		auto tmp = tail->data;
+		delete tail; 
+		head = tail = nullptr;
+		return tmp; 
+	}
 	auto tmp = tail;
 	auto tdata = tail->data; 
 	tail = tail->prev; 
-	tail->next = nullptr; 
+	tail->next = nullptr;
 	delete tmp; 
 
 	return tdata; 
@@ -54,7 +61,7 @@ int main()
 {
 	auto x = Queue<int>();
 	x.enqueue(5);
-	std::cout<<"enqueue"<< std::endl;
+	x.enqueue(10);
 	std::cout<<x.dequeue()<<std::endl;
 	return 0; 
 }

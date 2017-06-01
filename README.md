@@ -37,3 +37,14 @@
 ### Disadvantages 
 * Could be difficult to add to head of list 
 * Loop control can be more difficult
+
+## Stacks
+* Data is added (push) to  and removed (pop) from 'top' of the stack, other end is known as base
+* Stack follows "First in Last off" FILO, this mean that the newest item put on stack is removed
+* Can add and remove from stack in O(1)
+
+## Queues
+* Data is added (enqueue) to the end of the queue and removed (dequeue) from the front of the queue
+* Queue follows "First in First off" FIFO, oldest item is removed from the queue first
+* Enqueue and dequeue are both done in O(1)
+
